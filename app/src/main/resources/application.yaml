@@ -1,0 +1,12 @@
+server:
+  port: 7073
+  host: "0.0.0.0"
+db:
+  source: "jdbc"
+  connection:
+    url: "jdbc:postgresql://127.0.0.1:5433/eventstore_db"
+    username: "postgres"
+    password: "password"
+  statements:
+    ping: "DO 0"
+    select-all-pokemons: "SELECT id, name FROM Pokemons"

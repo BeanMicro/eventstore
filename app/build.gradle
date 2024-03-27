@@ -4,11 +4,29 @@
 
 plugins {
     id 'eventstore.java-application-conventions'
+    id 'org.graalvm.buildtools.native'
 }
+
+
+graalvmNative {
+    toolchainDetection = true
+    binaries.all {
+        resources.autodetect()
+    }
+}
+
 
 dependencies {
     implementation 'org.apache.commons:commons-text'
     implementation project(':utilities')
+
+    implementation('io.helidon.webserver:helidon-webserver:4.0.6')
+
+    implementation('io.helidon.config:helidon-config-yaml:4.0.6')
+
+    implementation('io.helidon.dbclient:helidon-dbclient:4.0.6')
+    implementation('io.helidon.dbclient:helidon-dbclient-jdbc:4.0.6')
+    implementation('io.helidon.dbclient:helidon-dbclient-hikari:4.0.6')
 }
 
 application {

@@ -5,10 +5,20 @@
  * For more detailed information on multi-project builds, please refer to https://docs.gradle.org/8.5/userguide/building_swift_projects.html in the Gradle documentation.
  */
 
+pluginManagement {
+    plugins {
+        id 'org.graalvm.buildtools.native' version '0.10.1'
+    }
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
 plugins {
     // Apply the foojay-resolver plugin to allow automatic download of JDKs
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.7.0'
 }
 
 rootProject.name = 'eventstore'
-include('app', 'list', 'utilities')
+include('app', 'migration', 'utilities')
