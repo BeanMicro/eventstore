@@ -1,0 +1,6 @@
+plugins {
+    id 'eventstore.java-library-conventions'
+}
+
+group = 'io.beandev.micro.eventstore'
+version = '0.1.0-SNAPSHOT'

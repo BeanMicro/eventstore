@@ -21,4 +21,6 @@ plugins {
 }
 
 rootProject.name = 'eventstore'
-include('app', 'migration', 'utilities')
+include('app', 'migration', 'core')
+include 'smartcontract'
+
