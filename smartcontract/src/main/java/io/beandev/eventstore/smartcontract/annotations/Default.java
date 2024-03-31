@@ -1,4 +1,4 @@
-package io.beandev.eventstore.core;
+package io.beandev.eventstore.smartcontract.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

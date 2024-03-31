@@ -1,8 +1,8 @@
 package testapp.testcontext.person;
 
-import io.beandev.eventstore.core.AggregateRoot;
-import io.beandev.eventstore.core.Default;
-import io.beandev.eventstore.core.Fallback;
+import io.beandev.eventstore.smartcontract.annotations.AggregateRoot;
+import io.beandev.eventstore.smartcontract.annotations.Default;
+import io.beandev.eventstore.smartcontract.annotations.Fallback;
 import jakarta.validation.constraints.NotNull;
 
 @AggregateRoot

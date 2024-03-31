@@ -1,4 +1,4 @@
-package io.beandev.eventstore.core;
+package io.beandev.eventstore.smartcontract.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE) // This annotation applies to class declarations.
 @Retention(RetentionPolicy.RUNTIME) // This annotation will be available at runtime.
-public @interface AggregateRoot {
+public @interface Entity {
     String value() default ""; // A member with a default value
 }

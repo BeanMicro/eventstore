@@ -4,3 +4,30 @@ plugins {
 
 group = 'io.beandev.micro.eventstore'
 version = '0.1.0-SNAPSHOT'
+
+sourceSets {
+    test {
+        java {
+            srcDir 'src/testdata/java'
+        }
+    }
+}
+
+tasks.register('packTestdataJar', Jar) {
+    from('src/testdata/java')
+    archiveClassifier.set('testdata')
+}
+
+tasks.register('copyTestdataJar', Copy) {
+    dependsOn packTestdataJar
+    from packTestdataJar.archivePath // corresponds to the JAR file
+    into 'src/test/resources' // replace with your desired location
+}
+
+tasks.register('pack') {
+    dependsOn copyTestdataJar
+}
+
+artifacts {
+    archives packTestdataJar
+}
