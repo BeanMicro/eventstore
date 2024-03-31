@@ -1,5 +1,7 @@
 package io.beandev.eventstore.smartcontract;
 
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.But;
 import io.cucumber.java.en.Given;
 
 import java.io.BufferedReader;
@@ -10,29 +12,47 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.net.URLClassLoader;
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class GivenStepDefinitions {
+    private static final String TESTDATA_JAR_FILE_NAME = "smartcontract-0.1.0-SNAPSHOT-testdata.jar";
+
     public enum JarType {
         GENERIC
     }
 
     @Given("an InputStream of a {} JAR file")
     public void anInputStreamOfAJARFile(JarType jarType) throws IOException {
+        // TODO Verify that the JAR file is in the classpath
+        // and readable as an InputStream
         System.out.println("JarType is " + jarType);
         printClasspath();
-        var is = getFileInputStream();
+        var is = getFileInputStream(TESTDATA_JAR_FILE_NAME);
         inspect(is);
+
+        Scenario.jarInputStream = getFileInputStream(TESTDATA_JAR_FILE_NAME);
     }
 
-    private static FileInputStream getFileInputStream() throws IOException {
+    @And("the aggregate {} is in the JAR file")
+    public void theAggregateIsInTheJARFileButNOTInTheSystem(String aggregateName) {
+        // TODO Verify that the aggregate is in the JAR file
+        // And have AggregateRoot annotation
+        System.out.println("Aggregate name is " + aggregateName);
+    }
+
+    @But("the aggregate {} is NOT in the System")
+    public void theAggregateIsNOTInTheSystem(String aggregateName) {
+        // TODO Mock AggregateRepositoryInterface such that
+        //  the aggregate is not in the system
+        System.out.println("Aggregate name is " + aggregateName);
+    }
+
+    private static FileInputStream getFileInputStream(String filename) throws IOException {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        URL url = classLoader.getResource("smartcontract-0.1.0-SNAPSHOT-testdata.jar");
+        URL url = classLoader.getResource(filename);
         if (url == null) {
             throw new FileNotFoundException("File " + "smartcontract-1.0-SNAPSHOT-testdata.jar" + " was not found in classpath");
         }
