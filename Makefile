@@ -29,8 +29,8 @@ reset-cluster: delete-cluster create-cluster
 build:
 	./gradlew build
 
-sc-pack-testdata:
-	./gradlew smartcontract:packTestdataJar
+sc-pack:
+	./gradlew smartcontract:pack
 
-sc-test: sc-pack-testdata
+sc-test: sc-pack
 	./gradlew smartcontract:test
